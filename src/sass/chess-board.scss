@@ -20,42 +20,33 @@ body {
   position: relative;
   width: 362px;
   height: 402px;  
-  border: 1px solid green;
+  border: 1px solid black;
   .header {
     height: 40px;
-    border: 1px solid red;
   }
-  #number-cords {
+  #numbers {
     display: flex;
-    // justify-content: center;
-    // align-items: center;
     flex-direction: column;
     height: 320px;
     width: 40px;
   }
-  #letter-cords {
+  #letters {
     position: absolute;
     bottom: 0;
     right: 0;
     display: flex;
-    // justify-content: center;
-    // align-items: center;
     height: 40px;
     width: 320px;
-    border: 1px solid blue;
-    > div {
-      // border: 1px solid green;
-      // border-width: 1px 1px 1px 0;
-    }
+    // > div {
+    //   border: 1px solid green;
+    //   border-width: 1px 1px 1px 0;
+    // }
   }
-  .cordinate {
+  .numbers__cordinate, .letters__cordinate {
     display: flex;
     justify-content: center;
     align-items: center;
     flex: 1;
-    // height: 40px;
-    // width: 40px;
-    border: 1px solid red;
   }
 }
 
@@ -67,24 +58,31 @@ body {
   flex: none;
   height: 320px;
   width: 320px;
-  // border: 1px solid blue;
   .board {
     display: flex;
     flex: 1;
     flex-direction: column;
-    border: 1px solid blue;
-  }
-  .row {
-    display: flex;
-    flex: 1;
-  }
-  .white-space {
-    flex: 1;
-    background: #fff;
-  }
-  .black-space {
-    flex: 1;
-    background: #808080;
+    border: 1px solid black;
+    &__row {
+      display: flex;
+      flex: 1;
+    }
+    &__white-space {
+      flex: 1;
+      background: #fff;
+      &:hover {
+        outline: 2px solid blue;
+        outline-offset: -2px;
+      }
+    }
+    &__black-space {
+      flex: 1;
+      background: #808080;
+      &:hover {
+        outline: 2px solid blue;
+        outline-offset: -2px;
+      }
+    }
   }
 }
 
@@ -94,7 +92,6 @@ body {
   align-items: center;
   height: 40px;
   width: 40px;
-  border: 1px solid red;
 }
 
 

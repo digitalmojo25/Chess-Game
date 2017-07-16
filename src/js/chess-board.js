@@ -1,7 +1,7 @@
 const chessBoard = document.getElementById('chess-board');
 const board = document.createElement('div');
-const numCords = document.getElementById('number-cords');
-const letterCords = document.getElementById('letter-cords');
+const numCords = document.getElementById('numbers');
+const letterCords = document.getElementById('letters');
 
 board.className = 'board';
 let row = null;
@@ -11,14 +11,14 @@ let cord = null;
 for (let i = 0; i > -8; i--) {
   // row = document.createElement('div');
   cord = document.createElement('div');
-  cord.className = 'cordinate';
+  cord.className = 'numbers__cordinate';
   cord.innerText = i + 8;
   numCords.appendChild(cord);
 }
 
 for (let i = 0; i < 8; i++) {
   cord = document.createElement('div');
-  cord.className = 'cordinate';
+  cord.className = 'letters__cordinate';
   switch(i + 1) {
     case 1:
       cord.innerText = 'A';
@@ -55,13 +55,13 @@ for (let i = 0; i < 64; i++) {
   const space = document.createElement('div');
   if (i % 8 === 0) {
     row = document.createElement('div');
-    row.className = 'row';
+    row.className = 'board__row';
     rowNum += 1;
   }
   if (i % 2 === 0) {
-    space.className = rowNum % 2 === 0 ? 'white-space' : 'black-space';
+    space.className = rowNum % 2 === 0 ? 'board__white-space' : 'board__black-space';
   } else {
-    space.className = rowNum % 2 === 0 ? 'black-space' : 'white-space';
+    space.className = rowNum % 2 === 0 ? 'board__black-space' : 'board__white-space';
   }
   row.appendChild(space);
   board.appendChild(row);
