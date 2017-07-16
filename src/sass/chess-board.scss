@@ -1,0 +1,100 @@
+@import '~normalize.css/normalize.css';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+}
+
+#chess-game {
+  position: relative;
+  width: 362px;
+  height: 402px;  
+  border: 1px solid green;
+  .header {
+    height: 40px;
+    border: 1px solid red;
+  }
+  #number-cords {
+    display: flex;
+    // justify-content: center;
+    // align-items: center;
+    flex-direction: column;
+    height: 320px;
+    width: 40px;
+  }
+  #letter-cords {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    // justify-content: center;
+    // align-items: center;
+    height: 40px;
+    width: 320px;
+    border: 1px solid blue;
+    > div {
+      // border: 1px solid green;
+      // border-width: 1px 1px 1px 0;
+    }
+  }
+  .cordinate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    // height: 40px;
+    // width: 40px;
+    border: 1px solid red;
+  }
+}
+
+#chess-board {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  display: flex;
+  flex: none;
+  height: 320px;
+  width: 320px;
+  // border: 1px solid blue;
+  .board {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    border: 1px solid blue;
+  }
+  .row {
+    display: flex;
+    flex: 1;
+  }
+  .white-space {
+    flex: 1;
+    background: #fff;
+  }
+  .black-space {
+    flex: 1;
+    background: #808080;
+  }
+}
+
+.chess-piece {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  border: 1px solid red;
+}
+
+
