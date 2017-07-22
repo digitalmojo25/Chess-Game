@@ -83,6 +83,14 @@ body {
         outline-offset: -2px;
       }
     }
+    &__selected {
+      outline: 2px solid lightgreen;
+      outline-offset: -2px;
+    }
+    &__moves {
+      outline: 2px solid lightgreen;
+      outline-offset: -2px;
+    }
   }
 }
 

@@ -1,5 +1,5 @@
 import 'src/sass/chess-board.scss'
-import 'src/js/chess-board'
-import 'src/js/init-game'
+import 'src/js/chessBoard'
+import 'src/js/initGame'
 
 // console.log('bundle loaded')

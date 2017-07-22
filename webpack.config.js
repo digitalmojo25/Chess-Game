@@ -6,35 +6,35 @@ const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 const extractSass = new ExtractTextWebpackPlugin({
   filename: '[name].css',
-  disable: process.env.NODE_ENV === 'dev',
+  disable: process.env.NODE_ENV === 'dev'
 })
 
 module.exports = {
   entry: {
-    dist: './src/index.js',
+    dist: './src/index.js'
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: 'babel-loader'
       },
       {
         test: /\.scss$/,
         use: extractSass.extract({
           use: [
             { loader: 'css-loader' },
-            { loader: 'sass-loader' },
+            { loader: 'sass-loader' }
           ],
-          fallback: 'style-loader',
-        }),
-      },
-    ],
+          fallback: 'style-loader'
+        })
+      }
+    ]
   },
   resolve: {
     extensions: ['*', '.js', '.jsx'],
@@ -44,13 +44,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'boilerplate',
       template: 'src/index.html',
-      inject: true,
+      inject: true
     }),
-    extractSass,
+    extractSass
   ],
+  devtool: 'cheap-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true, // gzip
-    port: 7000,
+    port: 7000
   }
 }
