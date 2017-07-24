@@ -71,29 +71,30 @@ body {
       flex: 1;
       background: #fff;
       &:hover {
-        outline: 2px solid blue;
-        outline-offset: -2px;
+        outline: 2px solid #4f3dfa;
+        outline-offset: -3px;
       }
     }
     &__black-space {
       flex: 1;
-      background: #808080;
+      background: #b1b1b1;
       &:hover {
-        outline: 2px solid blue;
-        outline-offset: -2px;
+        outline: 2px solid #4f3dfa;
+        outline-offset: -3px;
       }
     }
     &__selected {
-      outline: 2px solid lightblue;
-      outline-offset: -2px;
+      outline: 2px solid #85fe96;
+      outline-offset: -3px;
     }
     &__moves {
-      outline: 2px solid lightgreen;
-      outline-offset: -2px;
+      outline: 2px solid #85fe96;
+      // background: #85fe96;
+      outline-offset: -3px;
     }
     &__attack {
       outline: 2px solid red;
-      outline-offset: -2px;
+      outline-offset: -3px;
     }
   }
 }

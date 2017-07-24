@@ -63,11 +63,14 @@ function gameLogic (space) {
         chessGame.setSpace(vector)
         chessGame.moves = moves(chessGame.space, chessGame.board)        
         return
-      case 'wht':
-        // console.log(select1.children[0])
-        debugger
-        // chessGame.setSpace(vector)
+      case 'wht': {
+        if (!chessGame.pSpace) return
+        const isMove = validate(vector, chessGame.moves)
+        if (isMove) {
+          chessGame.setPiece(vector, movePiece.children[0])
+        }
         return
+      }
       default:
         break
     }

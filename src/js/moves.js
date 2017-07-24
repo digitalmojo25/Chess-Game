@@ -1,39 +1,5 @@
 import { chessGame } from './initGame'
-
-function northWest (v) {
-  let vector = {}
-  vector.x = v.x + 1
-  vector.y = v.y - 1
-  return vector
-}
-
-function northEast (v) {
-  let vector = {}
-  vector.x = v.x + 1
-  vector.y = v.y + 1
-  return vector
-}
-
-function southEast (v) {
-  let vector = {}
-  vector.x = v.x - 1
-  vector.y = v.y + 1
-  return vector
-}
-
-function southWest (v) {
-  let vector = {}
-  vector.x = v.x - 1
-  vector.y = v.y - 1
-  return vector
-}
-
-function isBoard (v) {
-  if (v.x >= 0 && v.x <= 7 && v.y >= 0 && v.y <= 7) {
-    return true
-  }
-  return false
-}
+import * as vFn from './vectors'
 
 export function pawn (vector, board, ele) {
   let moves = []
@@ -66,14 +32,14 @@ export function pawn (vector, board, ele) {
   while (a < 2) {
     if (direction === 1) {
       enemy = 'blk'
-      aVector = a === 1 ? northWest(vector) : northEast(vector)
+      aVector = a === 1 ? vFn.northWest(vector) : vFn.northEast(vector)
     }
     if (direction - 1) {
       enemy = 'wht'
-      aVector = a === 1 ? southWest(vector) : southEast(vector)
+      aVector = a === 1 ? vFn.southWest(vector) : vFn.southEast(vector)
     }
 
-    if (isBoard(aVector)) {
+    if (vFn.isBoard(aVector)) {
       const piece = board[aVector.x][aVector.y].children[0]
       if (piece.id.includes(enemy)) {
         board[aVector.x][aVector.y].classList.add('board__attack')
@@ -82,7 +48,6 @@ export function pawn (vector, board, ele) {
     }
     a++
   }
-
   return moves
 }
 
