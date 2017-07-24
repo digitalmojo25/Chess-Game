@@ -1,7 +1,11 @@
 import { chessGame } from './initGame'
+import moves, { validate } from './moves'
+// import * as moves from './moves'
 
 function gameLogic (space) {
   // debugger
+  const board = chessGame.board
+  const movePiece = chessGame.pSpace ? board[chessGame.pSpace.x][chessGame.pSpace.y] : null
   const s = space.id.split(',')
   const vector = { x: Number(s[0]), y: Number(s[1]) }
   let blkPiece = null
@@ -14,47 +18,50 @@ function gameLogic (space) {
   // and can only move into an open spot or an enemy
 
   if (chessGame.state.turn === 'wht') {
-    // debugger
     switch (sPieceId) {
-      case 'empty':
-        if (!chessGame.state.current) return
-        const previous = chessGame.state.current.id.split(',')
-        const pVector = { x: Number(previous[0]), y: Number(previous[1]) }
-
+      case 'empty': {
+        // if player doesn't start by select one one his pieces
+        // pSpace(previous space) will not be populated
+        if (!chessGame.pSpace) return
+        const isMove = validate(vector, chessGame.moves)
         // move piece to new spot on the board
-        // TODO: validate before moving
-        chessGame.setPiece(vector, chessGame.state.current.children[0], pVector)
+        if (isMove) {
+          chessGame.setPiece(vector, movePiece.children[0])
+        }
         return
+      }
       case 'wht':
-        // debugger
-        chessGame.state.current = chessGame.space
         chessGame.setSpace(vector)
+        chessGame.pSpace = vector
+        chessGame.moves = moves(chessGame.space, chessGame.board)
         return
-      case 'blk':
-        // console.log(select1.children[0])
-        debugger
-        // chessGame.setSpace(vector)
+      case 'blk': {
+        if (!chessGame.pSpace) return
+        const isMove = validate(vector, chessGame.moves)
+        if (isMove) {
+          chessGame.setPiece(vector, movePiece.children[0])
+        }
         return
+      }
       default:
         break
     }
   }
   if (chessGame.state.turn === 'blk') {
-    // debugger
     switch (sPieceId) {
       case 'empty':
-        if (!chessGame.state.current) return
-        const previous = chessGame.state.current.id.split(',')
-        const pVector = { x: Number(previous[0]), y: Number(previous[1]) }
-        
+        if (!chessGame.pSpace) return
+        const isMove = validate(vector, chessGame.moves)
         // move piece to new spot on the board
-        // TODO: validate before moving
-        chessGame.setPiece(vector, chessGame.state.current.children[0], pVector)
+        if (isMove) {
+          chessGame.setPiece(vector, movePiece.children[0])
+        }
         return
       case 'blk':
         // debugger
-        chessGame.state.current = chessGame.space
+        chessGame.pSpace = vector
         chessGame.setSpace(vector)
+        chessGame.moves = moves(chessGame.space, chessGame.board)        
         return
       case 'wht':
         // console.log(select1.children[0])

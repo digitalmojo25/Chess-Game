@@ -13,13 +13,13 @@ class ChessGame {
       current: null
     }
     this.board = board
+    this.pSpace = null
     this.space = null
     // this.select2 = null
     this.moves = null
   }
 
-  setPiece (vector, piece, pVector) {
-    // debugger
+  setPiece (vector, piece) {
     this.board.forEach((row, x) => {
       row.forEach((space, y) => {
         if (vector.x === x && vector.y === y) {
@@ -28,35 +28,26 @@ class ChessGame {
           this.board[x][y].appendChild(piece)
 
           // replace moved piece with an empty space
-          if (typeof pVector === 'undefined') return
           const empty = document.createElement('div')
           empty.classList.add('chess-piece')
           empty.setAttribute('id', 'empty')
-          this.board[pVector.x][pVector.y].appendChild(empty)
+          this.board[this.pSpace.x][this.pSpace.y].appendChild(empty)
 
           // change turn
           this.state.turn = this.state.turn === 'wht' ? 'blk' : 'wht'
-          // debugger
-
-          // TODO: reset space and state.current???
-          this.state.current = null
+          // reset move/turn values
+          this.pSpace = null
           this.space = null
         }
       })
     })
   }
 
-  // set Moves (vector) {
-  //   return moves(vector)
+  // set moves (moves) {
+  //   return moves
   // }
 
   setSpace (vector) {
-    // debugger
-    // clear selection on next click
-    // if (this.select1) {
-    //   this.select1.classList.remove('board__selected')
-    // }
-
     this.board.forEach((row, x) => {
       row.forEach((space, y) => {
         this.board[x][y].classList.remove('board__selected')
@@ -64,7 +55,18 @@ class ChessGame {
           // high light selected space
           this.board[x][y].classList.add('board__selected')
           this.space = this.board[x][y]
-          this.moves = moves(this.board[x][y], this.board)
+        }
+      })
+    })
+  }
+
+  initPiece (vector, piece) {
+    this.board.forEach((row, x) => {
+      row.forEach((space, y) => {
+        if (vector.x === x && vector.y === y) {
+          // remove empty div
+          this.board[x][y].children[0].parentNode.removeChild(this.board[x][y].children[0])
+          this.board[x][y].appendChild(piece)
         }
       })
     })

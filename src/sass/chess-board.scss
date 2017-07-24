@@ -84,11 +84,15 @@ body {
       }
     }
     &__selected {
-      outline: 2px solid lightgreen;
+      outline: 2px solid lightblue;
       outline-offset: -2px;
     }
     &__moves {
       outline: 2px solid lightgreen;
+      outline-offset: -2px;
+    }
+    &__attack {
+      outline: 2px solid red;
       outline-offset: -2px;
     }
   }
