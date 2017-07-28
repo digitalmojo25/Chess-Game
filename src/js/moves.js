@@ -1,55 +1,9 @@
-import { chessGame } from './initGame'
-import * as vFn from './vectors'
-
-export function pawn (vector, board, ele) {
-  let moves = []
-  let mVector = { ...vector }
-  let aVector = { ...vector }
-  const player = chessGame.state.bottom
-  const direction = ele.id.includes(player) ? 1 : -1
-  let m = 0
-  if (direction === 1 && vector.x > 1) {
-    m = 1
-  }
-  if (direction === -1 && vector.x < 6) {
-    m = 1
-  }
-  // pawns moves
-  while (m < 2) {
-    mVector.x += direction
-    const piece = board[mVector.x][mVector.y].children[0]
-    if (piece.id.includes('empty')) {
-      console.log(piece.id)
-      board[mVector.x][mVector.y].classList.add('board__moves')
-      moves = [...moves, { ...mVector }]
-    }
-    m++
-  }
-
-  // pawn attack
-  let a = 0
-  let enemy = null
-  while (a < 2) {
-    if (direction === 1) {
-      enemy = 'blk'
-      aVector = a === 1 ? vFn.northWest(vector) : vFn.northEast(vector)
-    }
-    if (direction - 1) {
-      enemy = 'wht'
-      aVector = a === 1 ? vFn.southWest(vector) : vFn.southEast(vector)
-    }
-
-    if (vFn.isBoard(aVector)) {
-      const piece = board[aVector.x][aVector.y].children[0]
-      if (piece.id.includes(enemy)) {
-        board[aVector.x][aVector.y].classList.add('board__attack')
-        moves = [...moves, aVector]
-      }
-    }
-    a++
-  }
-  return moves
-}
+import queen from './pieces/queen'
+import bishop from './pieces/bishop'
+import rook from './pieces/rook'
+import pawn from './pieces/pawn'
+import king from './pieces/king'
+import horse from './pieces/horse'
 
 function moves (space, board) {
   const piece = space.children[0]
@@ -60,9 +14,25 @@ function moves (space, board) {
   if (piece.id.includes('pawn')) {
     moves = pawn(vector, board, piece)
   }
+  if (piece.id.includes('queen')) {
+    moves = queen(vector, board, piece)
+  }
+  if (piece.id.includes('bishop')) {
+    moves = bishop(vector, board, piece)
+  }
+  if (piece.id.includes('rook')) {
+    moves = rook(vector, board, piece)
+  }
+  if (piece.id.includes('king')) {
+    moves = king(vector, board, piece)
+  }
+  if (piece.id.includes('horse')) {
+    moves = horse(vector, board, piece)
+  }
   return moves
 }
 
+// if vector is inside of an array of vectors
 export function validate (v, moves) {
   let isMove = false
   moves.forEach((m) => {
