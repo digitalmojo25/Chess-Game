@@ -13,17 +13,34 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
+  border: 1px dashed lightblue;
 }
 
-#chess-game {
+.chess {
   position: relative;
-  width: 362px;
-  height: 402px;  
+  max-width: 400px;
+  width: 100%;
   border: 1px solid black;
-  .header {
-    height: 40px;
+  &__header {
+    display: flex;
+    flex-direction: column;
+    height: 60px;
+    &--turn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      // border: 1px dashed blue;
+    }
+    &--time {
+      display: flex;
+      justify-content: center;      
+      align-items: center;
+      flex: 1;
+      // border: 1px dashed blue;
+    }
   }
+  
   #numbers {
     display: flex;
     flex-direction: column;
@@ -42,7 +59,7 @@ body {
     //   border-width: 1px 1px 1px 0;
     // }
   }
-  .numbers__cordinate, .letters__cordinate {
+  .numbers__coordinate, .letters__coordinate {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,14 +68,26 @@ body {
 }
 
 #chess-board {
-  position: absolute;
-  top: 40px;
-  right: 0;
-  display: flex;
-  flex: none;
-  height: 320px;
-  width: 321px;
+  position: relative;
+  // top: 60px;
+  // right: 0;
+  // left: 0;
+  // display: flex;
+  // flex: none;
+  // height: 320px;
+  width: 100%;
+  line-height: 0;
+  border: 1px dashed blue;
+  img {
+    width: 100%;
+    // border: 1px dashed blue;
+  }
   .board {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -68,6 +97,7 @@ body {
       flex: 1;
     }
     &__white-space {
+      position: relative;
       flex: 1;
       background: #fff;
       &:hover {
@@ -76,6 +106,7 @@ body {
       }
     }
     &__black-space {
+      position: relative;
       flex: 1;
       background: #b1b1b1;
       &:hover {
@@ -100,11 +131,35 @@ body {
 }
 
 .chess-piece {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40px;
-  width: 40px;
+
+  // use height becuase width
+  // is variable per piece
+  .king {
+    height: 65%;
+  }
+  .queen {
+    height: 60%;
+  }
+  .bishop {
+    height: 60%;
+  }
+  .horse {
+    height: 60%;
+  }
+  .rook {
+    height: 60%;
+  }
+  .pawn {
+    height: 55%;
+  }
 }
 
 

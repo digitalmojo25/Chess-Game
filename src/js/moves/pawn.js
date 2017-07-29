@@ -1,4 +1,4 @@
-import { chessGame } from '../initGame'
+import chessGame from '../ChessGame'
 import * as vFn from '../vectors'
 
 function pawn (vector, board, piece) {

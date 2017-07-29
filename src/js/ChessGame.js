@@ -1,10 +1,11 @@
 // TODO: add a timer to track how long it takes per turn
 // TODO: allow user to set amount of time per turn
 // TODO: show count down in header
-import moves from './moves'
+
+// import moves from './moves'
 
 class ChessGame {
-  constructor (board) {
+  constructor () {
     this.state = {
       started: false,
       top: 'blk',
@@ -12,11 +13,12 @@ class ChessGame {
       turn: 'wht',
       current: null
     }
-    this.board = board
+    this.board = null
     this.pSpace = null
     this.space = null
     // this.select2 = null
     this.moves = null
+    this.turnDom = document.querySelector('.chess__header--turn')
   }
 
   setPiece (vector, piece) {
@@ -35,6 +37,11 @@ class ChessGame {
 
           // change turn
           this.state.turn = this.state.turn === 'wht' ? 'blk' : 'wht'
+          if (this.state.turn === 'wht') {
+            this.turnDom.innerText = 'White\'s turn'
+          } else {
+            this.turnDom.innerText = 'Black\'s turn'
+          }
           // reset move/turn values
           this.pSpace = null
           this.space = null
@@ -73,4 +80,6 @@ class ChessGame {
   }
 }
 
-export default ChessGame
+const chessGame = new ChessGame()
+
+export default chessGame

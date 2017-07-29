@@ -1,4 +1,4 @@
-import { chessGame } from '../initGame'
+import chessGame from '../ChessGame'
 
 export function queen (vector, board, piece) {
   let moves = []

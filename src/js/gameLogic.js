@@ -1,4 +1,4 @@
-import { chessGame } from './initGame'
+import chessGame from './ChessGame'
 import moves, { validate } from './moves'
 // import * as moves from './moves'
 
