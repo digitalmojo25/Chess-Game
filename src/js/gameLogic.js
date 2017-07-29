@@ -8,7 +8,7 @@ function gameLogic (space) {
   const movePiece = chessGame.pSpace ? board[chessGame.pSpace.x][chessGame.pSpace.y] : null
   const s = space.id.split(',')
   const vector = { x: Number(s[0]), y: Number(s[1]) }
-  let blkPiece = null
+  // let blkPiece = null
   const sPieceId = space.children[0].id.split('-')[0]
   // const piece = space.children[0]
   // debugger

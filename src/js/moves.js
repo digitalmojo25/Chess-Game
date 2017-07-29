@@ -1,9 +1,9 @@
-import queen from './pieces/queen'
-import bishop from './pieces/bishop'
-import rook from './pieces/rook'
-import pawn from './pieces/pawn'
-import king from './pieces/king'
-import horse from './pieces/horse'
+import queen from './moves/queen'
+import bishop from './moves/bishop'
+import rook from './moves/rook'
+import pawn from './moves/pawn'
+import king from './moves/king'
+import horse from './moves/horse'
 
 function moves (space, board) {
   const piece = space.children[0]
