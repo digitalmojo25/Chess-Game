@@ -39,6 +39,9 @@ body {
       align-items: center;
       flex: 1;
       // border: 1px dashed blue;
+      span:nth-child(2) {
+        border: 1px solid red;
+      }
     }
   }
   
