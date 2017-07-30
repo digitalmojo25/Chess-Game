@@ -14,12 +14,20 @@ export function king (vector, board, piece) {
       break
     }
     if (piece.id.includes(enemy)) {
-      board[nVector.x][nVector.y].classList.add('board__attack')
+      if (board[nVector.x][nVector.y].className.includes('white')) {
+        board[nVector.x][nVector.y].classList.add('board__attack-wht')
+      } else {
+        board[nVector.x][nVector.y].classList.add('board__attack-blk')
+      }
       moves = [...moves, { ...nVector }]
       break
     }
     if (piece.id === 'empty') {
-      board[nVector.x][nVector.y].classList.add('board__moves')
+      if (board[nVector.x][nVector.y].className.includes('white')) {
+        board[nVector.x][nVector.y].classList.add('board__moves-wht')
+      } else {
+        board[nVector.x][nVector.y].classList.add('board__moves-blk')
+      }
       moves = [...moves, { ...nVector }]
     }
     break
@@ -34,12 +42,20 @@ export function king (vector, board, piece) {
       break
     }
     if (piece.id.includes(enemy)) {
-      board[neVector.x][neVector.y].classList.add('board__attack')
+      if (board[neVector.x][neVector.y].className.includes('white')) {
+        board[neVector.x][neVector.y].classList.add('board__attack-wht')
+      } else {
+        board[neVector.x][neVector.y].classList.add('board__attack-blk')
+      }
       moves = [...moves, { ...neVector }]
       break
     }
     if (piece.id === 'empty') {
-      board[neVector.x][neVector.y].classList.add('board__moves')
+      if (board[neVector.x][neVector.y].className.includes('white')) {
+        board[neVector.x][neVector.y].classList.add('board__moves-wht')
+      } else {
+        board[neVector.x][neVector.y].classList.add('board__moves-blk')
+      }
       moves = [...moves, { ...neVector }]
     }
     break
@@ -53,12 +69,20 @@ export function king (vector, board, piece) {
       break
     }
     if (piece.id.includes(enemy)) {
-      board[eVector.x][eVector.y].classList.add('board__attack')
+      if (board[eVector.x][eVector.y].className.includes('white')) {
+        board[eVector.x][eVector.y].classList.add('board__attack-wht')
+      } else {
+        board[eVector.x][eVector.y].classList.add('board__attack-blk')
+      }
       moves = [...moves, { ...eVector }]
       break
     }
     if (piece.id === 'empty') {
-      board[eVector.x][eVector.y].classList.add('board__moves')
+      if (board[eVector.x][eVector.y].className.includes('white')) {
+        board[eVector.x][eVector.y].classList.add('board__moves-wht')
+      } else {
+        board[eVector.x][eVector.y].classList.add('board__moves-blk')
+      }
       moves = [...moves, { ...eVector }]
     }
     break
@@ -73,12 +97,20 @@ export function king (vector, board, piece) {
       break
     }
     if (piece.id.includes(enemy)) {
-      board[seVector.x][seVector.y].classList.add('board__attack')
+      if (board[seVector.x][seVector.y].className.includes('white')) {
+        board[seVector.x][seVector.y].classList.add('board__attack-wht')
+      } else {
+        board[seVector.x][seVector.y].classList.add('board__attack-blk')
+      }
       moves = [...moves, { ...seVector }]
       break
     }
     if (piece.id === 'empty') {
-      board[seVector.x][seVector.y].classList.add('board__moves')
+      if (board[seVector.x][seVector.y].className.includes('white')) {
+        board[seVector.x][seVector.y].classList.add('board__moves-wht')
+      } else {
+        board[seVector.x][seVector.y].classList.add('board__moves-blk')
+      }
       moves = [...moves, { ...seVector }]
     }
     break
@@ -93,12 +125,20 @@ export function king (vector, board, piece) {
       break
     }
     if (piece.id.includes(enemy)) {
-      board[sVector.x][sVector.y].classList.add('board__attack')
+      if (board[sVector.x][sVector.y].className.includes('white')) {
+        board[sVector.x][sVector.y].classList.add('board__attack-wht')
+      } else {
+        board[sVector.x][sVector.y].classList.add('board__attack-blk')
+      }
       moves = [...moves, { ...sVector }]
       break
     }
     if (piece.id === 'empty') {
-      board[sVector.x][sVector.y].classList.add('board__moves')
+      if (board[sVector.x][sVector.y].className.includes('white')) {
+        board[sVector.x][sVector.y].classList.add('board__moves-wht')
+      } else {
+        board[sVector.x][sVector.y].classList.add('board__moves-blk')
+      }
       moves = [...moves, { ...sVector }]
     }
     break
@@ -113,12 +153,20 @@ export function king (vector, board, piece) {
       break
     }
     if (piece.id.includes(enemy)) {
-      board[swVector.x][swVector.y].classList.add('board__attack')
+      if (board[swVector.x][swVector.y].className.includes('white')) {
+        board[swVector.x][swVector.y].classList.add('board__attack-wht')
+      } else {
+        board[swVector.x][swVector.y].classList.add('board__attack-blk')
+      }
       moves = [...moves, { ...swVector }]
       break
     }
     if (piece.id === 'empty') {
-      board[swVector.x][swVector.y].classList.add('board__moves')
+      if (board[swVector.x][swVector.y].className.includes('white')) {
+        board[swVector.x][swVector.y].classList.add('board__moves-wht')
+      } else {
+        board[swVector.x][swVector.y].classList.add('board__moves-blk')
+      }
       moves = [...moves, { ...swVector }]
     }
     break
@@ -132,12 +180,20 @@ export function king (vector, board, piece) {
       break
     }
     if (piece.id.includes(enemy)) {
-      board[wVector.x][wVector.y].classList.add('board__attack')
+      if (board[wVector.x][wVector.y].className.includes('white')) {
+        board[wVector.x][wVector.y].classList.add('board__attack-wht')
+      } else {
+        board[wVector.x][wVector.y].classList.add('board__attack-blk')
+      }
       moves = [...moves, { ...wVector }]
       break
     }
     if (piece.id === 'empty') {
-      board[wVector.x][wVector.y].classList.add('board__moves')
+      if (board[wVector.x][wVector.y].className.includes('white')) {
+        board[wVector.x][wVector.y].classList.add('board__moves-wht')
+      } else {
+        board[wVector.x][wVector.y].classList.add('board__moves-blk')
+      }
       moves = [...moves, { ...wVector }]
     }
     break
@@ -152,12 +208,20 @@ export function king (vector, board, piece) {
       break
     }
     if (piece.id.includes(enemy)) {
-      board[nwVector.x][nwVector.y].classList.add('board__attack')
+      if (board[nwVector.x][nwVector.y].className.includes('white')) {
+        board[nwVector.x][nwVector.y].classList.add('board__attack-wht')
+      } else {
+        board[nwVector.x][nwVector.y].classList.add('board__attack-blk')
+      }
       moves = [...moves, { ...nwVector }]
       break
     }
     if (piece.id === 'empty') {
-      board[nwVector.x][nwVector.y].classList.add('board__moves')
+      if (board[nwVector.x][nwVector.y].className.includes('white')) {
+        board[nwVector.x][nwVector.y].classList.add('board__moves-wht')
+      } else {
+        board[nwVector.x][nwVector.y].classList.add('board__moves-blk')
+      }
       moves = [...moves, { ...nwVector }]
     }
     break

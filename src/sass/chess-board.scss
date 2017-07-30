@@ -105,8 +105,9 @@ body {
       flex: 1;
       background: #fff;
       &:hover {
-        outline: 2px solid #4f3dfa;
-        outline-offset: -3px;
+        // outline: 2px solid #4f3dfa;
+        // outline-offset: -3px;
+        background: #c6eafd;
       }
     }
     &__black-space {
@@ -114,22 +115,40 @@ body {
       flex: 1;
       background: #b1b1b1;
       &:hover {
-        outline: 2px solid #4f3dfa;
-        outline-offset: -3px;
+        // outline: 2px solid #4f3dfa;
+        // outline-offset: -3px;
+        background: #78b2d3;
       }
     }
-    &__selected {
-      outline: 2px solid #85fe96;
-      outline-offset: -3px;
+    &__selected-blk {
+      // outline: 2px solid #85fe96;
+      // outline-offset: -3px;
+      background: #78b2d3;
     }
-    &__moves {
-      outline: 2px solid #85fe96;
-      // background: #85fe96;
-      outline-offset: -3px;
+    &__selected-wht {
+      // outline: 2px solid #85fe96;
+      // outline-offset: -3px;
+      background: #c6eafd;      
     }
-    &__attack {
-      outline: 2px solid red;
-      outline-offset: -3px;
+    &__moves-blk {
+      // outline: 2px solid #85fe96;
+      // outline-offset: -3px;
+      background: #92d592;
+    }
+    &__moves-wht {
+      // outline: 2px solid #85fe96;
+      // outline-offset: -3px;
+      background: #ceffce;
+    }
+    &__attack-blk {
+      // outline: 2px solid #bf6e6e;
+      // outline-offset: -3px;
+      background: #dd9999;      
+    }
+    &__attack-wht {
+      // outline: 2px solid #d69090;
+      // outline-offset: -3px;
+      background: #facece;            
     }
   }
 }

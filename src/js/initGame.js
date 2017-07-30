@@ -28,29 +28,37 @@ function initGame () {
   // [0, 0] is the bottom left corner
   board.reverse()
 
+  function spaceOverHandler () {
+    moves(this, board)
+  }
+
+  function spaceLeaveHandler () {
+    // clear move styles
+    board.forEach((row, x) => {
+      row.forEach((space, y) => {
+        board[x][y].classList.remove('board__moves-blk')
+        board[x][y].classList.remove('board__moves-wht')
+        board[x][y].classList.remove('board__attack-blk')
+        board[x][y].classList.remove('board__attack-wht')
+      })
+    })
+  }
+
+  function spaceClickHandler () {
+    const space = this.id.split(',')
+    const vector = { x: Number(space[0]), y: Number(space[1]) }
+    chessGame.setSpace(vector)
+    gameLogic(this)
+  }
+
   // init coordinate system into space element ids
   // add mouse over and click events to each space
   board.forEach((row, x) => {
     row.forEach((space, y) => {
       space.setAttribute('id', `${x}, ${y}`)
-      space.onmouseover = function () {
-        moves(this, board)
-      }
-      space.onmouseleave = function () {
-        // clear style
-        board.forEach((row, x) => {
-          row.forEach((space, y) => {
-            board[x][y].classList.remove('board__moves')
-            board[x][y].classList.remove('board__attack')
-          })
-        })
-      }
-      space.onclick = function () {
-        const space = this.id.split(',')
-        const vector = { x: Number(space[0]), y: Number(space[1]) }
-        chessGame.setSpace(vector)
-        gameLogic(this)
-      }
+      space.addEventListener('mouseover', spaceOverHandler, false)
+      space.addEventListener('mouseleave', spaceLeaveHandler, false)
+      space.addEventListener('click', spaceClickHandler, false)
     })
   })
 

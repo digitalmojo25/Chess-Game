@@ -13,11 +13,19 @@ export function horse (vector, board, piece) {
     if (board[nVector.x] && board[nVector.x][nVector.y]) {
       const piece = board[nVector.x][nVector.y].children[0]
       if (piece.id === 'empty') {
-        board[nVector.x][nVector.y].classList.add('board__moves')
+        if (board[nVector.x][nVector.y].className.includes('white')) {
+          board[nVector.x][nVector.y].classList.add('board__moves-wht')
+        } else {
+          board[nVector.x][nVector.y].classList.add('board__moves-blk')
+        }
         moves = [...moves, { ...nVector }]
       }
       if (piece.id.includes(enemy)) {
-        board[nVector.x][nVector.y].classList.add('board__attack')
+        if (board[nVector.x][nVector.y].className.includes('white')) {
+          board[nVector.x][nVector.y].classList.add('board__attack-wht')
+        } else {
+          board[nVector.x][nVector.y].classList.add('board__attack-blk')
+        }
         moves = [...moves, { ...nVector }]
       }
     }
@@ -31,11 +39,19 @@ export function horse (vector, board, piece) {
     if (board[eVector.x] && board[eVector.x][eVector.y]) {
       const piece = board[eVector.x][eVector.y].children[0]
       if (piece.id === 'empty') {
-        board[eVector.x][eVector.y].classList.add('board__moves')
+        if (board[eVector.x][eVector.y].className.includes('white')) {
+          board[eVector.x][eVector.y].classList.add('board__moves-wht')
+        } else {
+          board[eVector.x][eVector.y].classList.add('board__moves-blk')
+        }
         moves = [...moves, { ...eVector }]
       }
       if (piece.id.includes(enemy)) {
-        board[eVector.x][eVector.y].classList.add('board__attack')
+        if (board[eVector.x][eVector.y].className.includes('white')) {
+          board[eVector.x][eVector.y].classList.add('board__attack-wht')
+        } else {
+          board[eVector.x][eVector.y].classList.add('board__attack-blk')
+        }
         moves = [...moves, { ...eVector }]
       }
     }
@@ -49,11 +65,19 @@ export function horse (vector, board, piece) {
     if (board[sVector.x] && board[sVector.x][sVector.y]) {
       const piece = board[sVector.x][sVector.y].children[0]
       if (piece.id === 'empty') {
-        board[sVector.x][sVector.y].classList.add('board__moves')
+        if (board[sVector.x][sVector.y].className.includes('white')) {
+          board[sVector.x][sVector.y].classList.add('board__moves-wht')
+        } else {
+          board[sVector.x][sVector.y].classList.add('board__moves-blk')
+        }
         moves = [...moves, { ...sVector }]
       }
       if (piece.id.includes(enemy)) {
-        board[sVector.x][sVector.y].classList.add('board__attack')
+        if (board[sVector.x][sVector.y].className.includes('white')) {
+          board[sVector.x][sVector.y].classList.add('board__attack-wht')
+        } else {
+          board[sVector.x][sVector.y].classList.add('board__attack-blk')
+        }
         moves = [...moves, { ...sVector }]
       }
     }
@@ -67,11 +91,19 @@ export function horse (vector, board, piece) {
     if (board[wVector.x] && board[wVector.x][wVector.y]) {
       const piece = board[wVector.x][wVector.y].children[0]
       if (piece.id === 'empty') {
-        board[wVector.x][wVector.y].classList.add('board__moves')
+        if (board[wVector.x][wVector.y].className.includes('white')) {
+          board[wVector.x][wVector.y].classList.add('board__moves-wht')
+        } else {
+          board[wVector.x][wVector.y].classList.add('board__moves-blk')
+        }
         moves = [...moves, { ...wVector }]
       }
       if (piece.id.includes(enemy)) {
-        board[wVector.x][wVector.y].classList.add('board__attack')
+        if (board[wVector.x][wVector.y].className.includes('white')) {
+          board[wVector.x][wVector.y].classList.add('board__attack-wht')
+        } else {
+          board[wVector.x][wVector.y].classList.add('board__attack-blk')
+        }
         moves = [...moves, { ...wVector }]
       }
     }

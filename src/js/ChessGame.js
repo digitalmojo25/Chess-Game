@@ -57,10 +57,16 @@ class ChessGame {
   setSpace (vector) {
     this.board.forEach((row, x) => {
       row.forEach((space, y) => {
-        this.board[x][y].classList.remove('board__selected')
+        // clear slection
+        this.board[x][y].classList.remove('board__selected-blk')
+        this.board[x][y].classList.remove('board__selected-wht')
         if (vector.x === x && vector.y === y) {
           // high light selected space
-          this.board[x][y].classList.add('board__selected')
+          if (this.board[x][y].className.includes('black')) {
+            this.board[x][y].classList.add('board__selected-blk')
+          } else {
+            this.board[x][y].classList.add('board__selected-wht')
+          }
           this.space = this.board[x][y]
         }
       })

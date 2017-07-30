@@ -16,12 +16,20 @@ export function bishop (vector, board, piece) {
       break
     }
     if (piece.id.includes(enemy)) {
-      board[neVector.x][neVector.y].classList.add('board__attack')
+      if (board[neVector.x][neVector.y].className.includes('white')) {
+        board[neVector.x][neVector.y].classList.add('board__attack-wht')
+      } else {
+        board[neVector.x][neVector.y].classList.add('board__attack-blk')
+      }
       moves = [...moves, { ...neVector }]
       break
     }
     if (piece.id === 'empty') {
-      board[neVector.x][neVector.y].classList.add('board__moves')
+      if (board[neVector.x][neVector.y].className.includes('white')) {
+        board[neVector.x][neVector.y].classList.add('board__moves-wht')
+      } else {
+        board[neVector.x][neVector.y].classList.add('board__moves-blk')
+      }
       moves = [...moves, { ...neVector }]
     }
   }
@@ -36,12 +44,20 @@ export function bishop (vector, board, piece) {
       break
     }
     if (piece.id.includes(enemy)) {
-      board[seVector.x][seVector.y].classList.add('board__attack')
+      if (board[seVector.x][seVector.y].className.includes('white')) {
+        board[seVector.x][seVector.y].classList.add('board__attack-wht')
+      } else {
+        board[seVector.x][seVector.y].classList.add('board__attack-blk')
+      }
       moves = [...moves, { ...seVector }]
       break
     }
     if (piece.id === 'empty') {
-      board[seVector.x][seVector.y].classList.add('board__moves')
+      if (board[seVector.x][seVector.y].className.includes('white')) {
+        board[seVector.x][seVector.y].classList.add('board__moves-wht')
+      } else {
+        board[seVector.x][seVector.y].classList.add('board__moves-blk')
+      }
       moves = [...moves, { ...seVector }]
     }
   }
@@ -56,12 +72,20 @@ export function bishop (vector, board, piece) {
       break
     }
     if (piece.id.includes(enemy)) {
-      board[swVector.x][swVector.y].classList.add('board__attack')
+      if (board[swVector.x][swVector.y].className.includes('white')) {
+        board[swVector.x][swVector.y].classList.add('board__attack-wht')
+      } else {
+        board[swVector.x][swVector.y].classList.add('board__attack-blk')
+      }
       moves = [...moves, { ...swVector }]
       break
     }
     if (piece.id === 'empty') {
-      board[swVector.x][swVector.y].classList.add('board__moves')
+      if (board[swVector.x][swVector.y].className.includes('white')) {
+        board[swVector.x][swVector.y].classList.add('board__moves-wht')
+      } else {
+        board[swVector.x][swVector.y].classList.add('board__moves-blk')
+      }
       moves = [...moves, { ...swVector }]
     }
   }
@@ -76,12 +100,20 @@ export function bishop (vector, board, piece) {
       break
     }
     if (piece.id.includes(enemy)) {
-      board[nwVector.x][nwVector.y].classList.add('board__attack')
+      if (board[nwVector.x][nwVector.y].className.includes('white')) {
+        board[nwVector.x][nwVector.y].classList.add('board__attack-wht')
+      } else {
+        board[nwVector.x][nwVector.y].classList.add('board__attack-blk')
+      }
       moves = [...moves, { ...nwVector }]
       break
     }
     if (piece.id === 'empty') {
-      board[nwVector.x][nwVector.y].classList.add('board__moves')
+      if (board[nwVector.x][nwVector.y].className.includes('white')) {
+        board[nwVector.x][nwVector.y].classList.add('board__moves-wht')
+      } else {
+        board[nwVector.x][nwVector.y].classList.add('board__moves-blk')
+      }
       moves = [...moves, { ...nwVector }]
     }
   }

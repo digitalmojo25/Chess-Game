@@ -15,12 +15,20 @@ export function rook (vector, board, piece) {
       break
     }
     if (piece.id.includes(enemy)) {
-      board[nVector.x][nVector.y].classList.add('board__attack')
+      if (board[nVector.x][nVector.y].className.includes('white')) {
+        board[nVector.x][nVector.y].classList.add('board__attack-wht')
+      } else {
+        board[nVector.x][nVector.y].classList.add('board__attack-blk')
+      }
       moves = [...moves, { ...nVector }]
       break
     }
     if (piece.id === 'empty') {
-      board[nVector.x][nVector.y].classList.add('board__moves')
+      if (board[nVector.x][nVector.y].className.includes('white')) {
+        board[nVector.x][nVector.y].classList.add('board__moves-wht')
+      } else {
+        board[nVector.x][nVector.y].classList.add('board__moves-blk')
+      }
       moves = [...moves, { ...nVector }]
     }
   }
@@ -34,12 +42,20 @@ export function rook (vector, board, piece) {
       break
     }
     if (piece.id.includes(enemy)) {
-      board[eVector.x][eVector.y].classList.add('board__attack')
+      if (board[eVector.x][eVector.y].className.includes('white')) {
+        board[eVector.x][eVector.y].classList.add('board__attack-wht')
+      } else {
+        board[eVector.x][eVector.y].classList.add('board__attack-blk')
+      }
       moves = [...moves, { ...eVector }]
       break
     }
     if (piece.id === 'empty') {
-      board[eVector.x][eVector.y].classList.add('board__moves')
+      if (board[eVector.x][eVector.y].className.includes('white')) {
+        board[eVector.x][eVector.y].classList.add('board__moves-wht')
+      } else {
+        board[eVector.x][eVector.y].classList.add('board__moves-blk')
+      }
       moves = [...moves, { ...eVector }]
     }
   }
@@ -53,12 +69,20 @@ export function rook (vector, board, piece) {
       break
     }
     if (piece.id.includes(enemy)) {
-      board[sVector.x][sVector.y].classList.add('board__attack')
+      if (board[sVector.x][sVector.y].className.includes('white')) {
+        board[sVector.x][sVector.y].classList.add('board__attack-wht')
+      } else {
+        board[sVector.x][sVector.y].classList.add('board__attack-blk')
+      }
       moves = [...moves, { ...sVector }]
       break
     }
     if (piece.id === 'empty') {
-      board[sVector.x][sVector.y].classList.add('board__moves')
+      if (board[sVector.x][sVector.y].className.includes('white')) {
+        board[sVector.x][sVector.y].classList.add('board__moves-wht')
+      } else {
+        board[sVector.x][sVector.y].classList.add('board__moves-blk')
+      }
       moves = [...moves, { ...sVector }]
     }
   }
@@ -72,12 +96,20 @@ export function rook (vector, board, piece) {
       break
     }
     if (piece.id.includes(enemy)) {
-      board[wVector.x][wVector.y].classList.add('board__attack')
+      if (board[wVector.x][wVector.y].className.includes('white')) {
+        board[wVector.x][wVector.y].classList.add('board__attack-wht')
+      } else {
+        board[wVector.x][wVector.y].classList.add('board__attack-blk')
+      }
       moves = [...moves, { ...wVector }]
       break
     }
     if (piece.id === 'empty') {
-      board[wVector.x][wVector.y].classList.add('board__moves')
+      if (board[wVector.x][wVector.y].className.includes('white')) {
+        board[wVector.x][wVector.y].classList.add('board__moves-wht')
+      } else {
+        board[wVector.x][wVector.y].classList.add('board__moves-blk')
+      }
       moves = [...moves, { ...wVector }]
     }
   }

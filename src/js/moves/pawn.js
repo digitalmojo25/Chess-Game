@@ -20,7 +20,11 @@ function pawn (vector, board, piece) {
     mVector.x += direction
     const piece = board[mVector.x][mVector.y].children[0]
     if (piece.id.includes('empty')) {
-      board[mVector.x][mVector.y].classList.add('board__moves')
+      if (board[mVector.x][mVector.y].className.includes('black')) {
+        board[mVector.x][mVector.y].classList.add('board__moves-blk')
+      } else {
+        board[mVector.x][mVector.y].classList.add('board__moves-wht')
+      }
       moves = [...moves, { ...mVector }]
     }
     m++
@@ -42,7 +46,11 @@ function pawn (vector, board, piece) {
     if (vFn.isBoard(aVector)) {
       const piece = board[aVector.x][aVector.y].children[0]
       if (piece.id.includes(enemy)) {
-        board[aVector.x][aVector.y].classList.add('board__attack')
+        if (board[aVector.x][aVector.y].className.includes('black')) {
+          board[aVector.x][aVector.y].classList.add('board__attack-blk')
+        } else {
+          board[aVector.x][aVector.y].classList.add('board__attack-wht')
+        }
         moves = [...moves, aVector]
       }
     }
