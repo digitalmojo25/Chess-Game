@@ -6,7 +6,7 @@ import moves from './moves'
 
 function initGame () {
   const DomBoard = document.querySelector('.board')
-
+  const startButton = document.getElementById('start-button')
   const emptyBoard = [[], [], [], [], [], [], [], []]
   const board = []
 
@@ -67,13 +67,13 @@ function initGame () {
   // TODO: allow for switching sides...
   // place pieces on the board
   for (const key in Wht) {
-    if (key === 'rook1') chessGame.initPiece({x: 0, y: 0}, Wht.rook1)
-    if (key === 'horse1') chessGame.initPiece({x: 0, y: 1}, Wht.horse1)
-    if (key === 'bishop1') chessGame.initPiece({x: 0, y: 2}, Wht.bishop1)
     if (key === 'king') chessGame.initPiece({x: 0, y: 3}, Wht.king)
     if (key === 'queen') chessGame.initPiece({x: 0, y: 4}, Wht.queen)
+    if (key === 'bishop1') chessGame.initPiece({x: 0, y: 2}, Wht.bishop1)
     if (key === 'bishop2') chessGame.initPiece({x: 0, y: 5}, Wht.bishop2)
+    if (key === 'horse1') chessGame.initPiece({x: 0, y: 1}, Wht.horse1)
     if (key === 'horse2') chessGame.initPiece({x: 0, y: 6}, Wht.horse2)
+    if (key === 'rook1') chessGame.initPiece({x: 0, y: 0}, Wht.rook1)
     if (key === 'rook2') chessGame.initPiece({x: 0, y: 7}, Wht.rook2)
     if (key === 'pawn1') chessGame.initPiece({x: 1, y: 0}, Wht.pawn1)
     if (key === 'pawn2') chessGame.initPiece({x: 1, y: 1}, Wht.pawn2)
@@ -86,12 +86,11 @@ function initGame () {
   }
 
   for (const key in Blk) {
-    if (key === 'rook1') chessGame.initPiece({x: 7, y: 0}, Blk.rook1)
-    if (key === 'horse1') chessGame.initPiece({x: 7, y: 1}, Blk.horse1)
-    if (key === 'bishop1') chessGame.initPiece({x: 7, y: 2}, Blk.bishop1)
     if (key === 'king') chessGame.initPiece({x: 7, y: 3}, Blk.king)
     if (key === 'queen') chessGame.initPiece({x: 7, y: 4}, Blk.queen)
+    if (key === 'bishop1') chessGame.initPiece({x: 7, y: 2}, Blk.bishop1)
     if (key === 'bishop2') chessGame.initPiece({x: 7, y: 5}, Blk.bishop2)
+    if (key === 'horse1') chessGame.initPiece({x: 7, y: 1}, Blk.horse1)
     if (key === 'horse2') chessGame.initPiece({x: 7, y: 6}, Blk.horse2)
     if (key === 'rook1') chessGame.initPiece({x: 7, y: 0}, Blk.rook1)
     if (key === 'rook2') chessGame.initPiece({x: 7, y: 7}, Blk.rook2)
@@ -104,6 +103,12 @@ function initGame () {
     if (key === 'pawn7') chessGame.initPiece({x: 6, y: 6}, Blk.pawn7)
     if (key === 'pawn8') chessGame.initPiece({x: 6, y: 7}, Blk.pawn8)
   }
+
+  function startGameTimeHandler () {
+    const time = document.getElementById('count-down').innerHTML.split(':')
+    chessGame.startTimer(time)
+  }
+  startButton.addEventListener('click', startGameTimeHandler, false)
 }
 
 initGame()
