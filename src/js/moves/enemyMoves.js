@@ -13,7 +13,10 @@ function enemyMoves (board, player) {
         const type = board[x][y].children[0].id.split('-')[1]
         const vector = {x, y}
         const piece = board[x][y].children[0]
-        enemyMoves = [...enemyMoves, ...(moves[type](vector, board, piece, false))]
+        if (typeof type === 'string') {
+          // console.log('enemyMoves', type)
+          enemyMoves = [...enemyMoves, ...(moves[type](vector, board, piece, false))]
+        }
       }
     })
   })
