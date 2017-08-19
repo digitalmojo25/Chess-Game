@@ -27,7 +27,7 @@ function gameLogic (space) {
           chessGame.startTimer(countDown.innerHTML.split(':'))
           chessGame.setPiece(vector, movePiece.children[0])
           // TODO: add check and checkmate
-          // look for check
+          // look for check && set moves on the board for the last moved piece
           const cMoves = moves(board[vector.x][vector.y], board)
           // const currentMove = board[vector.x][vector.y]
           cMoves.forEach((m) => {
@@ -131,6 +131,10 @@ function gameLogic (space) {
           chessGame.startTimer(countDown.innerHTML.split(':'))
           chessGame.setPiece(vector, movePiece.children[0])
         }
+
+        // look for check
+        const cMoves = moves(board[vector.x][vector.y], board)
+
         return
       case 'blk':
         chessGame.pSpace = vector

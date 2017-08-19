@@ -9,6 +9,7 @@ function initBoard () {
   let rowNum = 0
   let cord = null
 
+  // build number cords div element
   for (let i = 0; i > -8; i--) {
     cord = document.createElement('div')
     cord.className = 'numbers__coordinate'
@@ -16,6 +17,7 @@ function initBoard () {
     // numCords.appendChild(cord)
   }
 
+  // build letter codes dev element
   for (let i = 0; i < 8; i++) {
     cord = document.createElement('div')
     cord.className = 'letters__coordinate'
@@ -50,6 +52,7 @@ function initBoard () {
     // letterCords.appendChild(cord)
   }
 
+  // build the chess board
   for (let i = 0; i < 64; i++) {
     const space = document.createElement('div')
     if (i % 8 === 0) {
