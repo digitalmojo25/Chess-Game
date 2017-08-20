@@ -1,7 +1,7 @@
 import * as moves from './index'
 
 // put enemy pieces on the board into an array
-function enemyMoves (board, player) {
+function enemyMoves (board, player, attacks) {
   let enemy = 'wht'
   if (player === 'wht') {
     enemy = 'blk'
@@ -14,8 +14,19 @@ function enemyMoves (board, player) {
         const vector = {x, y}
         const piece = board[x][y].children[0]
         if (typeof type === 'string') {
+          let vectors = []
+          if (type === 'pawn') {
+            vectors = moves.pawn(vector, board, piece, false).filter((m) => {
+              if ('a' in m) {
+                delete m.a
+                return m
+              }
+            })
+          } else {
+            vectors = moves[type](vector, board, piece, false)
+          }
           // console.log('enemyMoves', type)
-          enemyMoves = [...enemyMoves, ...(moves[type](vector, board, piece, false))]
+          enemyMoves = [...enemyMoves, ...vectors]
         }
       }
     })

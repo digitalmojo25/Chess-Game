@@ -14,12 +14,14 @@ function moves (space, board) {
 
   if (piece.id.includes('pawn')) {
     moves = pawn(vector, board, piece, true)
+    // console.log(moves)
   }
   if (piece.id.includes('queen')) {
     return queen(vector, board, piece, true)
   }
   if (piece.id.includes('bishop')) {
     moves = bishop(vector, board, piece, true)
+    // console.log(moves)
   }
   if (piece.id.includes('rook')) {
     moves = rook(vector, board, piece, true)

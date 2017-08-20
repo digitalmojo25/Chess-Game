@@ -27,6 +27,7 @@ function pawn (vector, board, piece, eMoves) {
         board[mVector.x][mVector.y].classList.add('board__moves-blk')
       }
       moves = [...moves, { ...mVector }]
+      // moves = [...moves, mVector]
     }
     m++
   }
@@ -49,11 +50,14 @@ function pawn (vector, board, piece, eMoves) {
       if (piece.id.includes(enemy)) {
         if (eMoves && board[aVector.x][aVector.y].className.includes('white')) {
           board[aVector.x][aVector.y].classList.add('board__attack-wht')
+          // a marks attack vector
+          aVector.a = true
         }
         if (eMoves && board[aVector.x][aVector.y].className.includes('black')) {
           board[aVector.x][aVector.y].classList.add('board__attack-blk')
+          aVector.a = true
         }
-        moves = [...moves, aVector]
+        moves = [...moves, { ...aVector }]
       }
     }
     a++

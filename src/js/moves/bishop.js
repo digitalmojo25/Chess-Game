@@ -100,8 +100,10 @@ export function bishop (vector, board, piece, eMoves) {
   for (const nwVector = { ...vector }; ;) {
     nwVector.x += (1 * direction)
     nwVector.y -= (1 * direction)
+    // if vector is not on the board (undefined)
     if (!board[nwVector.x] || !board[nwVector.x][nwVector.y]) break
     const piece = board[nwVector.x][nwVector.y].children[0]
+    // if vector is own side
     if (piece.id.includes(player)) {
       break
     }

@@ -250,6 +250,7 @@ export function king (vector, board, piece, eMoves) {
     }
     break
   }
+  // filter enemy moves from kings move list
   return moves.filter((m) => {
     const move = { ...m }
     if (enemyMoves.includes(JSON.stringify(move))) {

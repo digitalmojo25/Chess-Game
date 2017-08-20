@@ -1,6 +1,7 @@
 import chessGame from './ChessGame'
 import moves, { validate } from './moves'
 import enemyMoves from './moves/enemyMoves'
+import attackPiece from './utils/attackPiece'
 
 function gameLogic (space) {
   const board = chessGame.board
@@ -14,8 +15,55 @@ function gameLogic (space) {
   // enemy piece? chess pieces not move through another piece
   // and can only move into an open spot or an enemy
 
+  // function checkmate () {
+  //   // cMoves.forEach((m) => {
+  //   // if (board[m.x][m.y].children[0].id.includes('blk-king')) {
+  //   // console.log('BLACK KING IS IN CHECK!')
+  //   // check to see if king can move
+  //   kingMoves = moves(board[m.x][m.y], board).filter((m) => {
+  //     return !cMovesStr.includes(JSON.stringify(m))
+  //   })
+  //   if (kingMoves.length > 0) {
+  //     checkMessage = 'BLACK KING IS IN CHECK!'
+  //     return
+  //   }
+
+  //   // if king has no moves check if checking piece can be taken
+  //   console.log('BLACK KING HAS NO MOVES!')
+  //   // check if checking piece can be taken on next move
+  //   if (attackPiece('wht', vector)) return
+
+  //   // if checking piece can not be taken, check if checked
+  //   // players pieces can move to block block check
+  //   const eMoves = enemyMoves(board, 'wht')
+  //   eMoves.forEach((e, i) => {
+  //     // fill the border with all of checked players possible moves
+  //     if (board[e.x][e.y].children[0].id === 'empty') {
+  //       board[e.x][e.y].innerHTML = `<div id="blk-enemy-move-${i}" class="chess-piece">EM</div>`
+  //     }
+  //   })
+  //   // get attacking pieces moves
+  //   const checkMoves = moves(board[vector.x][vector.y], board)
+  //   // king is in checkMoves the player has been checkmated
+  //   checkMoves.forEach((c) => {
+  //     if (board[c.x][c.y].children[0].id.includes('king')) {
+  //       console.log('BLACK KING IS IN CHECKMATE!')
+  //     }
+  //   })
+  //   eMoves.forEach((e, i) => {
+  //     if (board[e.x][e.y].children[0].id.includes('enemy-move')) {
+  //       board[e.x][e.y].innerHTML = `<div id="empty" class="chess-piece"></div>`
+  //     }
+  //   })
+
+  //   // debugger
+  //   // }
+  //   // })
+  // }
+
   if (chessGame.state.turn === 'wht') {
     switch (sPieceId) {
+      case 'blk':
       case 'empty': {
         // if player doesn't start by select one one his pieces
         // pSpace(previous space) will not be populated
@@ -26,103 +74,87 @@ function gameLogic (space) {
           countDown.innerHTML = '24:00:00'
           chessGame.startTimer(countDown.innerHTML.split(':'))
           chessGame.setPiece(vector, movePiece.children[0])
-          // TODO: add check and checkmate
-          // look for check && set moves on the board for the last moved piece
-          const cMoves = moves(board[vector.x][vector.y], board)
-          // const currentMove = board[vector.x][vector.y]
-          cMoves.forEach((m) => {
-            let check = false
-            let kingMoves = []
-            if (board[m.x][m.y].children[0].id.includes('blk-king')) {
-              console.log('black king is in check')
-              kingMoves = moves(board[m.x][m.y], board)
-              check = true
-            }
-            // check if king has moves
-            // if (check) {
-            // }
-            // check if pieces can block
-            if (check && kingMoves.length === 0) {
-              console.log('black king has no moves')
-              // check to see if attacking piece is with the enemy moves... or can be killed
-              // get all black moves and remove them from the attacking pieces possible moves
-              // check again if king is still in check if so its checkmate
-              // TODO: only add pawn attacking moves and remove pawn moves
-              const eMoves = enemyMoves(board, 'wht')
-              let found = false
-              eMoves.forEach((m) => {
-                if (m.x === vector.x && m.y === vector.y) {
-                  found = true
-                }
-              })
-              if (found) {
-                console.log('white attacking piece can be taken by black')
-                return
+
+          // was king put in check by a piece which wasn't moved?
+          // find the vector for the black king
+          let king = null
+          let checkMessage = ''
+          let kingMoves = []
+          board.forEach((row, x) => {
+            row.forEach((space, y) => {
+              if (board[x][y].children[0].id === 'blk-king') {
+                king = { x, y }
               }
-              // TODO: only add pawn moves and remove pawn attacking moves
-              // console.log(cMoves, eMoves)
-              // remove king
-              // const notBlocked = cMoves.filter((c) => {
-              //   let found = false
-              //   eMoves.forEach((e) => {
-              //     if (c.x === e.x && c.y === e.y) {
-              //       found = true
-              //     }
-              //   })
-              //   return !found
-              // })
-              // TODO: fill board with stand in enemy piece
-              // and run moves for attacking piece
-              // const checkBoard = [...board]
-              eMoves.forEach((e, i) => {
-                // const enemyPiece = document.createElement('div')
-                if (board[e.x][e.y].children[0].id === 'empty') {
-                  board[e.x][e.y].innerHTML = `<div id="blk-enemy-move-${i}" class="chess-piece">EM</div>`
-                }
-              })
-              const checkMoves = moves(board[vector.x][vector.y], board)
-              checkMoves.forEach((c) => {
-                if (board[c.x][c.y].children[0].id.includes('king')) {
-                  console.log('black in is checkmate')
-                }
-              })
-              eMoves.forEach((e, i) => {
-                // const empty = document.createElement('div')
-                // empty.classList.add('chess-piece')
-                // empty.setAttribute('id', 'empty')
-                if (board[e.x][e.y].children[0].includes('enemy-move')) {
-                  board[e.x][e.y].innerHTML = `<div id="empty" class="chess-piece"></div>`
-                }
-              })
-              // console.log(checkMoves)
-              // debugger
-            }
+            })
           })
+
+          const attacker = attackPiece('wht', king)
+          if (attacker) {
+            console.log('BLACK KING IS IN CHECK!')
+            kingMoves = moves(board[king.x][king.y], board)
+            if (kingMoves.length > 0) {
+              checkMessage = 'BLACK KING IS IN CHECK!'
+              return
+            }
+
+            // if king has no moves check if checking piece can be taken
+            console.log('BLACK KING HAS NO MOVES!')
+            // check if checking piece can be taken on next move
+            if (attackPiece('wht', vector)) return
+
+            // if checking piece can not be taken, check if checked
+            // players pieces can move to block block check
+            const eMoves = enemyMoves(board, 'wht')
+            eMoves.forEach((e, i) => {
+              // fill the border with all of checked players possible moves
+              if (board[e.x][e.y].children[0].id === 'empty') {
+                board[e.x][e.y].innerHTML = `<div id="blk-enemy-move-${i}" class="chess-piece">EM</div>`
+              }
+            })
+            // get attacking pieces moves
+            const checkMoves = moves(board[vector.x][vector.y], board)
+            // king is in checkMoves the player has been checkmated
+            checkMoves.forEach((c) => {
+              if (board[c.x][c.y].children[0].id.includes('king')) {
+                console.log('BLACK KING IS IN CHECKMATE!')
+              }
+            })
+            eMoves.forEach((e, i) => {
+              if (board[e.x][e.y].children[0].id.includes('enemy-move')) {
+                board[e.x][e.y].innerHTML = `<div id="empty" class="chess-piece"></div>`
+              }
+            })
+          } else {
+            console.log('Black king is not in check')
+          }
         }
         return
       }
       case 'wht':
+        // white tries to move onto another white space
         chessGame.setSpace(vector)
         chessGame.pSpace = vector
         chessGame.moves = moves(chessGame.space, chessGame.board)
         return
-      case 'blk': {
-        if (!chessGame.pSpace) return
-        const isMove = validate(vector, chessGame.moves)
-        if (isMove) {
-          countDown.innerHTML = '24:00:00'
-          chessGame.startTimer(countDown.innerHTML.split(':'))
-          chessGame.setPiece(vector, movePiece.children[0])
-        }
-        return
-      }
+        // case 'blk': {
+        //   // white attacks black
+        //   if (!chessGame.pSpace) return
+        //   const isMove = validate(vector, chessGame.moves)
+        //   if (isMove) {
+        //     countDown.innerHTML = '24:00:00'
+        //     chessGame.startTimer(countDown.innerHTML.split(':'))
+        //     chessGame.setPiece(vector, movePiece.children[0])
+        //   }
+        //   return
+        // }
       default:
         break
     }
   }
   if (chessGame.state.turn === 'blk') {
     switch (sPieceId) {
-      case 'empty':
+      case 'wht':
+      case 'empty': {
         if (!chessGame.pSpace) return
         const isMove = validate(vector, chessGame.moves)
         // move piece to new spot on the board
@@ -130,27 +162,78 @@ function gameLogic (space) {
           countDown.innerHTML = '24:00:00'
           chessGame.startTimer(countDown.innerHTML.split(':'))
           chessGame.setPiece(vector, movePiece.children[0])
+
+          // was king put in check by a piece which wasn't moved?
+          // find the vector for the black king
+          let king = null
+          let checkMessage = ''
+          let kingMoves = []
+          board.forEach((row, x) => {
+            row.forEach((space, y) => {
+              if (board[x][y].children[0].id === 'wht-king') {
+                king = { x, y }
+              }
+            })
+          })
+
+          const attacker = attackPiece('blk', king)
+          if (attacker) {
+            console.log('WHITE KING IS IN CHECK!')
+            kingMoves = moves(board[king.x][king.y], board)
+            if (kingMoves.length > 0) {
+              checkMessage = 'WHITE KING IS IN CHECK!'
+              return
+            }
+
+            // if king has no moves check if checking piece can be taken
+            console.log('WHITE KING HAS NO MOVES!')
+            // check if checking piece can be taken on next move
+            if (attackPiece('blk', vector)) return
+
+            // if checking piece can not be taken, check if checked
+            // players pieces can move to block block check
+            const eMoves = enemyMoves(board, 'blk')
+            eMoves.forEach((e, i) => {
+              // fill the border with all of checked players possible moves
+              if (board[e.x][e.y].children[0].id === 'empty') {
+                board[e.x][e.y].innerHTML = `<div id="blk-enemy-move-${i}" class="chess-piece">EM</div>`
+              }
+            })
+            // get attacking pieces moves
+            const checkMoves = moves(board[vector.x][vector.y], board)
+            // king is in checkMoves the player has been checkmated
+            checkMoves.forEach((c) => {
+              if (board[c.x][c.y].children[0].id.includes('king')) {
+                console.log('WHITE KING IS IN CHECKMATE!')
+              }
+            })
+            eMoves.forEach((e, i) => {
+              if (board[e.x][e.y].children[0].id.includes('enemy-move')) {
+                board[e.x][e.y].innerHTML = `<div id="empty" class="chess-piece"></div>`
+              }
+            })
+          } else {
+            console.log('white king is not in check')
+          }
         }
-
-        // look for check
-        const cMoves = moves(board[vector.x][vector.y], board)
-
         return
+      }
       case 'blk':
         chessGame.pSpace = vector
         chessGame.setSpace(vector)
         chessGame.moves = moves(chessGame.space, chessGame.board)     
-        return
-      case 'wht': {
-        if (!chessGame.pSpace) return
-        const isMove = validate(vector, chessGame.moves)
-        if (isMove) {
-          countDown.innerHTML = '24:00:00'
-          chessGame.startTimer(countDown.innerHTML.split(':'))
-          chessGame.setPiece(vector, movePiece.children[0])
-        }
-        return
-      }
+        break
+        // return
+      // case 'wht': {
+      //   if (!chessGame.pSpace) return
+      //   const isMove = validate(vector, chessGame.moves)
+      //   if (isMove) {
+      //     countDown.innerHTML = '24:00:00'
+      //     chessGame.startTimer(countDown.innerHTML.split(':'))
+      //     chessGame.setPiece(vector, movePiece.children[0])
+      //   }
+      //   return
+      // }
       default:
         break
     }
