@@ -1,6 +1,6 @@
 import chessGame from '../ChessGame'
 
-export function rook (vector, board, piece, eMoves) {
+export function rook (vector, board, piece) {
   let moves = []
   const player = piece.id.split('-')[0]
   const direction = piece.id.includes(chessGame.state.bottom) ? 1 : -1
@@ -15,20 +15,20 @@ export function rook (vector, board, piece, eMoves) {
       break
     }
     if (piece.id.includes(enemy)) {
-      if (eMoves && board[nVector.x][nVector.y].className.includes('white')) {
+      if (board[nVector.x][nVector.y].className.includes('white')) {
         board[nVector.x][nVector.y].classList.add('board__attack-wht')
       }
-      if (eMoves && board[nVector.x][nVector.y].className.includes('black')) {
+      if (board[nVector.x][nVector.y].className.includes('black')) {
         board[nVector.x][nVector.y].classList.add('board__attack-blk')
       }
       moves = [...moves, { ...nVector }]
       break
     }
     if (piece.id === 'empty') {
-      if (eMoves && board[nVector.x][nVector.y].className.includes('white')) {
+      if (board[nVector.x][nVector.y].className.includes('white')) {
         board[nVector.x][nVector.y].classList.add('board__moves-wht')
       }
-      if (eMoves && board[nVector.x][nVector.y].className.includes('black')) {
+      if (board[nVector.x][nVector.y].className.includes('black')) {
         board[nVector.x][nVector.y].classList.add('board__moves-blk')
       }
       moves = [...moves, { ...nVector }]
@@ -44,20 +44,20 @@ export function rook (vector, board, piece, eMoves) {
       break
     }
     if (piece.id.includes(enemy)) {
-      if (eMoves && board[eVector.x][eVector.y].className.includes('white')) {
+      if (board[eVector.x][eVector.y].className.includes('white')) {
         board[eVector.x][eVector.y].classList.add('board__attack-wht')
       }
-      if (eMoves && board[eVector.x][eVector.y].className.includes('black')) {
+      if (board[eVector.x][eVector.y].className.includes('black')) {
         board[eVector.x][eVector.y].classList.add('board__attack-blk')
       }
       moves = [...moves, { ...eVector }]
       break
     }
     if (piece.id === 'empty') {
-      if (eMoves && board[eVector.x][eVector.y].className.includes('white')) {
+      if (board[eVector.x][eVector.y].className.includes('white')) {
         board[eVector.x][eVector.y].classList.add('board__moves-wht')
       }
-      if (eMoves && board[eVector.x][eVector.y].className.includes('black')) {
+      if (board[eVector.x][eVector.y].className.includes('black')) {
         board[eVector.x][eVector.y].classList.add('board__moves-blk')
       }
       moves = [...moves, { ...eVector }]
@@ -73,20 +73,20 @@ export function rook (vector, board, piece, eMoves) {
       break
     }
     if (piece.id.includes(enemy)) {
-      if (eMoves && board[sVector.x][sVector.y].className.includes('white')) {
+      if (board[sVector.x][sVector.y].className.includes('white')) {
         board[sVector.x][sVector.y].classList.add('board__attack-wht')
       }
-      if (eMoves && board[sVector.x][sVector.y].className.includes('black')) {
+      if (board[sVector.x][sVector.y].className.includes('black')) {
         board[sVector.x][sVector.y].classList.add('board__attack-blk')
       }
       moves = [...moves, { ...sVector }]
       break
     }
     if (piece.id === 'empty') {
-      if (eMoves && board[sVector.x][sVector.y].className.includes('white')) {
+      if (board[sVector.x][sVector.y].className.includes('white')) {
         board[sVector.x][sVector.y].classList.add('board__moves-wht')
       }
-      if (eMoves && board[sVector.x][sVector.y].className.includes('black')) {
+      if (board[sVector.x][sVector.y].className.includes('black')) {
         board[sVector.x][sVector.y].classList.add('board__moves-blk')
       }
       moves = [...moves, { ...sVector }]
@@ -102,20 +102,20 @@ export function rook (vector, board, piece, eMoves) {
       break
     }
     if (piece.id.includes(enemy)) {
-      if (eMoves && board[wVector.x][wVector.y].className.includes('white')) {
+      if (board[wVector.x][wVector.y].className.includes('white')) {
         board[wVector.x][wVector.y].classList.add('board__attack-wht')
       }
-      if (eMoves && board[wVector.x][wVector.y].className.includes('black')) {
+      if (board[wVector.x][wVector.y].className.includes('black')) {
         board[wVector.x][wVector.y].classList.add('board__attack-blk')
       }
       moves = [...moves, { ...wVector }]
       break
     }
     if (piece.id === 'empty') {
-      if (eMoves && board[wVector.x][wVector.y].className.includes('white')) {
+      if (board[wVector.x][wVector.y].className.includes('white')) {
         board[wVector.x][wVector.y].classList.add('board__moves-wht')
       }
-      if (eMoves && board[wVector.x][wVector.y].className.includes('black')) {
+      if (board[wVector.x][wVector.y].className.includes('black')) {
         board[wVector.x][wVector.y].classList.add('board__moves-blk')
       }
       moves = [...moves, { ...wVector }]

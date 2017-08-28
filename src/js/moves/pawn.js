@@ -1,7 +1,7 @@
 import chessGame from '../ChessGame'
 import * as vFn from '../vectors'
 
-function pawn (vector, board, piece, eMoves) {
+function pawn (vector, board, piece) {
   let moves = []
   let mVector = { ...vector }
   let aVector = { ...vector }
@@ -18,16 +18,16 @@ function pawn (vector, board, piece, eMoves) {
   // pawns moves
   while (m < 2) {
     mVector.x += direction
+    if (!board[mVector.x]) break
     const piece = board[mVector.x][mVector.y].children[0]
     if (piece.id.includes('empty')) {
-      if (eMoves && board[mVector.x][mVector.y].className.includes('white')) {
+      if (board[mVector.x][mVector.y].className.includes('white')) {
         board[mVector.x][mVector.y].classList.add('board__moves-wht')
       }
-      if (eMoves && board[mVector.x][mVector.y].className.includes('black')) {
+      if (board[mVector.x][mVector.y].className.includes('black')) {
         board[mVector.x][mVector.y].classList.add('board__moves-blk')
       }
       moves = [...moves, { ...mVector }]
-      // moves = [...moves, mVector]
     }
     m++
   }
@@ -48,12 +48,12 @@ function pawn (vector, board, piece, eMoves) {
     if (vFn.isBoard(aVector)) {
       const piece = board[aVector.x][aVector.y].children[0]
       if (piece.id.includes(enemy)) {
-        if (eMoves && board[aVector.x][aVector.y].className.includes('white')) {
+        if (board[aVector.x][aVector.y].className.includes('white')) {
           board[aVector.x][aVector.y].classList.add('board__attack-wht')
           // a marks attack vector
           aVector.a = true
         }
-        if (eMoves && board[aVector.x][aVector.y].className.includes('black')) {
+        if (board[aVector.x][aVector.y].className.includes('black')) {
           board[aVector.x][aVector.y].classList.add('board__attack-blk')
           aVector.a = true
         }

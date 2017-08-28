@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rm -rf dist",
     "build": "webpack",
-    "start": "export NODE_ENV=dev; webpack-dev-server -d"
+    "start": "export NODE_ENV=dev; webpack-dev-server"
   },
   "keywords": [],
   "author": "",

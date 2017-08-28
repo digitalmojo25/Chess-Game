@@ -15,7 +15,9 @@ function enemyMoves (board, player, attacks) {
         const piece = board[x][y].children[0]
         if (typeof type === 'string') {
           let vectors = []
+          if (type === 'king') return
           if (type === 'pawn') {
+            // debugger
             vectors = moves.pawn(vector, board, piece, false).filter((m) => {
               if ('a' in m) {
                 delete m.a
@@ -23,7 +25,7 @@ function enemyMoves (board, player, attacks) {
               }
             })
           } else {
-            vectors = moves[type](vector, board, piece, false)
+            vectors = moves[type](vector, board, piece)
           }
           // console.log('enemyMoves', type)
           enemyMoves = [...enemyMoves, ...vectors]

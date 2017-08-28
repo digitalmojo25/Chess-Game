@@ -22,6 +22,37 @@ class ChessGame {
     this.timer = null
     this.turnDom = document.querySelector('.chess__header--turn')
     this.countDownDom = document.getElementById('count-down')
+    this.tempEnemy = null
+  }
+
+  // this method is intended to be fired back to back for
+  // validating a new position
+  // tempSetPiece()... run a test against new position... tempSetPiece()
+  tempSetPiece (start, end) {
+    // save starting piece
+    const piece = this.board[start.x][start.y].children[0]
+    // replace moved piece with an empty space or    
+    const empty = document.createElement('div')
+    empty.classList.add('chess-piece')
+    empty.setAttribute('id', 'empty')
+
+    this.board[start.x][start.y].children[0].parentNode.removeChild(this.board[start.x][start.y].children[0])
+    if (this.tempEnemy) {
+      // debugger
+      // remove element
+      this.board[start.x][start.y].appendChild(this.tempEnemy)
+      this.tempEnemy = null
+    } else {
+      this.board[start.x][start.y].appendChild(empty)
+    }
+
+    // if space isn't empty
+    if (!this.board[end.x][end.y].children[0].id.includes('empty')) {
+      this.tempEnemy = this.board[end.x][end.y].children[0]
+    }
+    this.board[end.x][end.y].children[0].parentNode.removeChild(this.board[end.x][end.y].children[0])
+    this.board[end.x][end.y].appendChild(piece)
+    // move piece
   }
 
   setPiece (vector, piece) {

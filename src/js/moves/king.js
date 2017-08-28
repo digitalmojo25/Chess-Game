@@ -1,10 +1,7 @@
 import chessGame from '../ChessGame'
-// import * as eMoves from './index'
-// import * as blk from '../blackPieces'
-// import * as wht from '../whitePieces'
+import coveredPiece from '../utils/coveredPiece'
 
 export function king (vector, board, piece, eMoves) {
-  // debugger
   let enemyMoves = []
   if (typeof eMoves !== 'boolean') {
     enemyMoves = eMoves.map(m => JSON.stringify(m))
@@ -262,6 +259,14 @@ export function king (vector, board, piece, eMoves) {
     }
     return true
   })
+  // .filter((m) => {
+  //   let enemyCovered = false
+  //   if (board[m.x][m.y].children[0].id.includes('wht')) {
+  //     enemyCovered = coveredPiece('wht', m)
+  //   }
+  //   // return !attackPiece('wht', m)
+  //   return !enemyCovered
+  // })
 }
 
 // console.log(king)
